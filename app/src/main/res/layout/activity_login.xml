@@ -5,45 +5,61 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#0FB3AA"
     android:padding="10dp"
     tools:context=".LoginActivity">
 
     <LinearLayout
         android:layout_centerInParent="true"
-        android:padding="16dp"
+        android:paddingRight="16dp"
+        android:paddingLeft="16dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <android.support.design.widget.TextInputLayout
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="24sp"
+            android:textColor="#fff"
+            android:fontFamily="sans-serif"
+            android:text="LOGIN"/>
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:layout_marginTop="8dp"
+            android:padding="8dp"
+            android:background="@drawable/bg_rectangle_edittext"
+            android:textColorHint="#555"
+            android:textColor="#333"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"/>
 
-            <EditText
-                android:id="@+id/etEmail"
-                android:hint="Email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
+        <EditText
+            android:id="@+id/etPassword"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:layout_marginTop="8dp"
+            android:padding="8dp"
+            android:background="@drawable/bg_rectangle_edittext"
+            android:textColorHint="#555"
+            android:textColor="#333"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"/>
 
-            <EditText
-                android:id="@+id/etPassword"
-                android:hint="password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-        </android.support.design.widget.TextInputLayout>
 
         <Button
             android:id="@+id/btnLogin"
-            android:text="LOGIN"
+            android:layout_marginTop="16dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textColor="#FFF"
+            android:textStyle="bold"
+            android:text="LOG IN"
+            android:background="@drawable/bg_rectangle_button"/>
 
     </LinearLayout>
 
