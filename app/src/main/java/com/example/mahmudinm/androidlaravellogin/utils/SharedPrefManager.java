@@ -9,11 +9,13 @@ public class SharedPrefManager {
 
     public static final String SP_NAMA = "spNama";
     public static final String SP_EMAIL = "spEmail";
+    public static final String SP_TOKEN = "spToken";
 
     public static final String SP_SUDAH_LOGIN = "spSudahLogin";
 
     SharedPreferences sp;
     SharedPreferences.Editor spEditor;
+
 
     public SharedPrefManager(Context context){
         sp = context.getSharedPreferences(SP_LOGIN_APP, Context.MODE_PRIVATE);
@@ -41,6 +43,10 @@ public class SharedPrefManager {
 
     public String getSPEmail(){
         return sp.getString(SP_EMAIL, "");
+    }
+
+    public String getSPToken(){
+        return sp.getString(SP_TOKEN, "");
     }
 
     public Boolean getSPSudahLogin(){

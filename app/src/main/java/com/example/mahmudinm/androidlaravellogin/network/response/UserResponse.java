@@ -4,7 +4,7 @@ import com.example.mahmudinm.androidlaravellogin.model.User;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class UserResponse {
+public class UserResponse extends BaseResponse {
 
     @Expose
     @SerializedName("status") String status;

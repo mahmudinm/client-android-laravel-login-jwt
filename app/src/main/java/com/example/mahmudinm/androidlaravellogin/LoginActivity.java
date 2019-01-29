@@ -68,12 +68,19 @@ import retrofit2.Response;
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 progressDialog.dismiss();
-                User user = response.body().getUser();
-                sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, user.getName());
-                sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, true);
-                startActivity(new Intent(mContext, MainActivity.class)
-                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
-                finish();
+
+                if (response.code() == 200) {
+                    User user = response.body().getUser();
+                    sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, user.getName());
+                    sharedPrefManager.saveSPString(SharedPrefManager.SP_TOKEN, "Bearer " +response.body().getToken());
+                    sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, true);
+                    startActivity(new Intent(mContext, MainActivity.class)
+                            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+                    finish();
+                } else {
+                    Toast.makeText(mContext, "Emai/Password salah", Toast.LENGTH_SHORT).show();
+                }
+
             }
 
             @Override
