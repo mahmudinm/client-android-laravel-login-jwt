@@ -1,5 +1,7 @@
 package com.example.mahmudinm.androidlaravellogin.network;
 
+import com.example.mahmudinm.androidlaravellogin.network.response.UserResponse;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -10,7 +12,7 @@ public interface ApiInterface {
 
     @FormUrlEncoded
     @POST("api/auth/login")
-    Call<ResponseBody> postLogin(@Field("email") String email,
+    Call<UserResponse> postLogin(@Field("email") String email,
                                  @Field("password") String password);
 
 }

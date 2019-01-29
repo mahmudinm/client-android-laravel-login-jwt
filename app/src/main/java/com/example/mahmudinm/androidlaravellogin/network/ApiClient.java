@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiClient {
 
 
-    private static final String url = "http://http://192.168.100.9:8000/laravel-android-login/";
+    private static final String url = "http://192.168.100.9:8000/";
 
     private static Retrofit retrofit;
 
