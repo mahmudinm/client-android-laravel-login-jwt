@@ -2,6 +2,7 @@
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.mahmudinm.androidlaravellogin.model.User;
 import com.example.mahmudinm.androidlaravellogin.network.ApiClient;
 import com.example.mahmudinm.androidlaravellogin.network.ApiInterface;
 import com.example.mahmudinm.androidlaravellogin.network.response.UserResponse;
@@ -40,6 +42,7 @@ import retrofit2.Response;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         getSupportActionBar().hide();
+        mContext = this;
 
         ButterKnife.bind(this);
         apiInterface = ApiClient.getClient().create(ApiInterface.class);
@@ -47,6 +50,13 @@ import retrofit2.Response;
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading");
         progressDialog.setCancelable(false);
+
+
+        if (sharedPrefManager.getSPSudahLogin()){
+            startActivity(new Intent(LoginActivity.this, MainActivity.class)
+                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+            finish();
+        }
 
     }
 
@@ -58,11 +68,17 @@ import retrofit2.Response;
             @Override
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 progressDialog.dismiss();
+                User user = response.body().getUser();
+                sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA, user.getName());
+                sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, true);
+                startActivity(new Intent(mContext, MainActivity.class)
+                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+                finish();
             }
 
             @Override
             public void onFailure(Call<UserResponse> call, Throwable t) {
-
+                progressDialog.dismiss();
             }
         });
     }
