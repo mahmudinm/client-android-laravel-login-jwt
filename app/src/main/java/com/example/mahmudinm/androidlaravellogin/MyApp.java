@@ -3,6 +3,9 @@ package com.example.mahmudinm.androidlaravellogin;
 import android.app.Application;
 import android.content.Context;
 
+import com.example.mahmudinm.androidlaravellogin.network.ApiClient;
+import com.example.mahmudinm.androidlaravellogin.network.ApiInterface;
+
 public class MyApp extends Application {
     private static MyApp instance;
 
@@ -14,6 +17,7 @@ public class MyApp extends Application {
         return instance;
         // or return instance.getApplicationContext();
     }
+
 
     @Override
     public void onCreate() {

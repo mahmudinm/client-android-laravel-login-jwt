@@ -1,5 +1,6 @@
 package com.example.mahmudinm.androidlaravellogin.network;
 
+import com.example.mahmudinm.androidlaravellogin.MyApp;
 import com.example.mahmudinm.androidlaravellogin.network.interceptor.TokenAuthenticator;
 
 import okhttp3.OkHttpClient;
@@ -8,7 +9,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
-
 
     private static final String url = "http://192.168.100.9:8000/";
 
