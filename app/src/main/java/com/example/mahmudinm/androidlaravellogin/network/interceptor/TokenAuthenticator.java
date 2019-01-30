@@ -34,7 +34,7 @@ public class TokenAuthenticator implements Interceptor {
         Request mainRequest = chain.request();
         ApiInterface apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
-        if (mainResponse.code() == 401 || mainResponse.code() == 403 ) {
+        if ( mainResponse.code() == 401 || mainResponse.code() == 403 ) {
             String token = sharedPrefManager.getSPToken();
             retrofit2.Response<UserResponse> refreshToken = apiInterface.refreshToken(token).execute();
             if (refreshToken.isSuccessful()) {
@@ -53,7 +53,7 @@ public class TokenAuthenticator implements Interceptor {
 //            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //            MyApp.getContext().startActivity(i);
 
-        } else if (mainResponse.code() == 500 ){
+        } else if ( mainResponse.code() == 500 ){
             sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, false);
             Intent i = new Intent(MyApp.getContext(), LoginActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
