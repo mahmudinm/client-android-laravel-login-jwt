@@ -52,7 +52,11 @@ public class MainActivity extends AppCompatActivity {
         getUser.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                Toast.makeText(MainActivity.this, response.body().getEmail(), Toast.LENGTH_SHORT).show();
+                if (response.code() == 200) {
+                    Toast.makeText(MainActivity.this, response.body().getEmail(), Toast.LENGTH_SHORT).show();
+                } else if (response.code() == 401 || response.code() == 403 ) {
+                    Toast.makeText(MainActivity.this, "Token Expired", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
