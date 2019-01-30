@@ -21,4 +21,7 @@ public interface ApiInterface {
     @GET("api/auth/me")
     Call<User> getUser(@Header("Authorization") String token);
 
+    @POST("api/auth/refresh")
+    Call<ResponseBody> refreshToken(@Header("Authorization") String token);
+
 }
