@@ -1,5 +1,7 @@
 package com.example.mahmudinm.androidlaravellogin.network;
 
+import com.example.mahmudinm.androidlaravellogin.network.interceptor.TokenAuthenticator;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -15,7 +17,10 @@ public class ApiClient {
     public static Retrofit getClient() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
+        OkHttpClient client = new OkHttpClient.Builder()
+                                    .addInterceptor(interceptor)
+                                    .addInterceptor(new TokenAuthenticator())
+                                    .build();
 
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
@@ -28,5 +33,7 @@ public class ApiClient {
         return retrofit;
 
     }
+
+
 
 }
