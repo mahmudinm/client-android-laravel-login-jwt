@@ -45,7 +45,7 @@ import retrofit2.Response;
         mContext = this;
 
         ButterKnife.bind(this);
-//        apiInterface = ApiClient..create(ApiInterface.class);
+        apiInterface = ApiClient.getClient().create(ApiInterface.class);
         sharedPrefManager = new SharedPrefManager(this);
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading");
